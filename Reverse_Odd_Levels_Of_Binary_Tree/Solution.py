@@ -12,9 +12,6 @@ class TreeNode:
 class Solution:
     def reverseOddLevels(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         def reverse(stack, level):
-            if not stack or not stack[0]:
-                return
-
             if level & 1:
                 left = 0
                 right = len(stack) - 1
@@ -26,6 +23,9 @@ class Solution:
                     nright.val = tmp
                     left += 1
                     right -= 1
+
+            if not stack[0].left:
+                return
 
             tmp_stack = []
             for n in stack:
